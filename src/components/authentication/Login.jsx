@@ -1,13 +1,22 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+
+import loginData from "./loginData";
 
 const Login = () => {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const loginAuth = (e) => {
     e.preventDefault();
 
-    navigate("/map");
+    if (loginData.email === "ayaz" && loginData.password === "ayaz") {
+      navigate("/map");
+    } else {
+      alert("Invalid username or password");
+    }
   };
 
   return (
@@ -23,6 +32,7 @@ const Login = () => {
               type="email"
               className="form-control"
               placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -31,6 +41,7 @@ const Login = () => {
               type="password"
               className="form-control"
               placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
